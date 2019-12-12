@@ -8,6 +8,7 @@ import Container from '../../components/Container'
 
 import { Form, SubmitButton, List } from './styles';
 
+// passar loading como 0 ou 1 por erro no styled-components
 export default class Main extends Component {
   state = {
     newRepo: '',
@@ -26,7 +27,8 @@ export default class Main extends Component {
   }
 
   //Salvar os dados do localStorage
-  componentDidUpdate(_, prevState) { //acessa as atualizações do estado
+  componentDidUpdate(_, prevState) {
+    //acessa as atualizações do estado
     const { repositories } = this.state;
 
     if (prevState.repositories !== repositories) {
@@ -98,7 +100,7 @@ export default class Main extends Component {
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              {/* encode por causa da / na URL que seria um endereço a mais */}
+              {/* encode por causa da (/) na URL que seria como um endereço a mais */}
               <Link to={`/repository/${encodeURIComponent(repository.name)}`}>Detalhes</Link>
             </li>
           ))}
